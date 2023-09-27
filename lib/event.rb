@@ -54,6 +54,4 @@ class Event
     end
     ti
   end
-
-
 end
