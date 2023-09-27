@@ -14,4 +14,10 @@ class FoodTruck
     @inventory[item] += amount
   end
 
+  def potential_revenue
+    @inventory.map do |item, amount|
+      item.price * amount
+    end.sum
+  end
+
 end
