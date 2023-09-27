@@ -35,4 +35,16 @@ class Event
     end
     unique_list.sort.uniq
   end
+
+  def total_inventory
+    ti = Hash.new { |hash_name, key| hash_name[key] = {quantity: 0, vendors: []} }
+    @food_trucks.each do |food_truck|
+      food_truck.inventory.each do |food_truck_item, amount|
+        ti[food_truck_item][:quantity] += amount
+        ti[food_truck_item][:vendors] << food_truck
+      end
+    end
+    ti
+  end
+
 end
