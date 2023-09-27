@@ -15,4 +15,15 @@ class Event
       food_truck.name
     end
   end
+
+  def food_trucks_that_sell(item)
+    food_trucks = []
+    @food_trucks.each do |food_truck|
+      food_truck.inventory.each do |food_truck_item, amount|
+    food_trucks << food_truck if food_truck_item == item
+      end
+    end
+    food_trucks
+  end
+  
 end
