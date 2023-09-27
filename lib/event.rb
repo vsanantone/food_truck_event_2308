@@ -26,6 +26,14 @@ class Event
     food_trucks
   end
 
+  def overstock_items
+    results = []
+    total_inventory.each do |food_truck_item, amount|
+      results << food_truck_item if amount[:quantity] > 50 && amount[:vendors].length > 1
+    end
+    results
+  end
+
   def sorted_item_list
     unique_list = []
     @food_trucks.each do |food_truck|
@@ -46,5 +54,6 @@ class Event
     end
     ti
   end
+
 
 end

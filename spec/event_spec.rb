@@ -116,6 +116,20 @@ RSpec.describe Event do
     end
   end
 
+  describe '#overstock_items' do
+    it 'returns overstocked if it is sold by more than 1 food truck AND the total quantity is greater than 50. ' do
+      @event.add_food_truck(@food_truck1) 
+      @event.add_food_truck(@food_truck2) 
+      @event.add_food_truck(@food_truck3) 
 
+      @food_truck1.stock(@item1, 35)
+      @food_truck1.stock(@item2, 7)
+      @food_truck2.stock(@item4, 50)
+      @food_truck2.stock(@item3, 25)
+      @food_truck3.stock(@item1, 65)
+      @food_truck3.stock(@item2, 65)  
+      expect(@event.overstock_items).to eq([@item1, @item2])
+    end
+  end
 
 end
